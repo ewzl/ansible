@@ -694,6 +694,7 @@ class PyVmomiHelper(object):
                     self.module.fail_json(msg="Network '%(name)s' does not exists" % network)
 
             elif 'vlan' in network:
+                network['vlan'] = int(network['vlan'])
                 dvps = self.cache.get_all_objs(self.content, [vim.dvs.DistributedVirtualPortgroup])
                 for dvp in dvps:
                     if hasattr(dvp.config.defaultPortConfig, 'vlan') and dvp.config.defaultPortConfig.vlan.vlanId == network['vlan']:
