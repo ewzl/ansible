@@ -1203,7 +1203,7 @@ class PyVmomiHelper(object):
         dcpath = compile_folder_path_for_object(datacenter)
 
         # Check for full path first in case it was already supplied
-        if (self.params['folder'].startswith(dcpath + self.params['datacenter'] + '/vm')):
+        if (self.params['omit_dcpath'] or self.params['folder'].startswith(dcpath + self.params['datacenter'] + '/vm')):
             fullpath = self.params['folder']
         elif (self.params['folder'].startswith('/vm/') or self.params['folder'] == '/vm'):
             fullpath = "%s%s%s" % (dcpath, self.params['datacenter'], self.params['folder'])
@@ -1461,6 +1461,7 @@ def main():
         networks=dict(type='list', default=[]),
         resource_pool=dict(type='str'),
         customization=dict(type='dict', default={}, no_log=True),
+        omit_dcpath=dict(type='bool', default=False)
     )
 
     module = AnsibleModule(argument_spec=argument_spec,
