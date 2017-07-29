@@ -89,6 +89,12 @@ options:
     - '   folder: vm/folder2'
     - '   folder: folder2'
     default: /vm
+  omit_dcpath:
+    description:
+    - Omit dcpath insertion ahead of inventory path.
+    default: 'no'
+    type: bool
+    version_added: '2.4'
   hardware:
     description:
     - Manage some VM hardware attributes.
