@@ -379,7 +379,8 @@ class CLI(with_metaclass(ABCMeta, object)):
         if vault_opts:
             parser.add_option('--ask-vault-pass', default=C.DEFAULT_ASK_VAULT_PASS, dest='ask_vault_pass', action='store_true',
                               help='ask for vault password')
-            parser.add_option('--vault-password-file', default=[], dest='vault_password_files',
+            parser.add_option('--vault-password-file',
+                              default=[C.DEFAULT_VAULT_PASSWORD_FILE,], dest='vault_password_files',
                               help="vault password file", action="callback", callback=CLI.unfrack_paths, type='string')
             parser.add_option('--new-vault-password-file', default=[], dest='new_vault_password_files',
                               help="new vault password file for rekey", action="callback", callback=CLI.unfrack_paths, type='string')
